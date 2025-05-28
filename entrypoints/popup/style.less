@@ -1,0 +1,192 @@
+:root {
+  color-scheme: light dark;
+}
+
+@var-size: 16px;
+@var-btn-bg: #669bf6;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  border: 1px dashed #ccc;
+  padding: 16px 0;
+  border-radius: 0.5em;
+}
+
+body {
+  min-width: 480px;
+  font-size: 14px;
+}
+
+button {
+  border: none;
+  outline: none;
+  appearance: none;
+  padding: 10px @var-size;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background: @var-btn-bg;
+  text-transform: uppercase;
+  transition: all 0.25s;
+  font-weight: bold;
+
+  &:hover {
+    background: lighten(@var-btn-bg, 5%);
+  }
+
+  &:disabled {
+    background: lighten(@var-btn-bg, 10%);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+textarea {
+  border: none;
+  appearance: none;
+  outline: none;
+  border-radius: 0.5em;
+  padding: 10px;
+}
+
+.un-forget-app-task {
+  &.add {
+    gap: @var-size;
+    display: flex;
+    flex-direction: column;
+    margin-top: @var-size;
+    padding-top: @var-size;
+    border-top: 1px dashed #ccc;
+  }
+
+  &-wrap {
+    gap: @var-size;
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+  }
+
+  &-open {
+    width: 100%;
+    margin-top: @var-size;
+  }
+}
+
+.un-forget-app-task-add-btn {
+  display: flex;
+  gap: @var-size;
+
+  button {
+    flex: 1
+  }
+}
+
+.un-forget-app-task-item {
+  padding: 10px;
+  border-radius: 0.5em;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.active {
+    background: lighten(greenyellow, 25%);
+  }
+
+  &.nothing {
+    gap: 8px;
+    padding: 5em 0;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.un-forget-app-task-item-btn {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .feather-trash {
+    &:hover {
+      stroke: red;
+    }
+  }
+
+  .feather-check {
+    &:hover {
+      stroke: green;
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  @var-cr: #000;
+  @var-item-bg: #f2f3f4;
+
+  body {
+    color: @var-cr
+  }
+
+  button {
+    color: #fff;
+  }
+
+  .un-forget-app-task-item, textarea {
+    background: @var-item-bg
+  }
+
+  svg:not(.feather-check) {
+    stroke: @var-cr
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @var-cr: #fff;
+  @var-item-bg: #444;
+
+  body {
+    color: @var-cr
+  }
+
+  .un-forget-app-task-item, textarea {
+    background: @var-item-bg
+  }
+
+  svg:not(.feather-check) {
+    stroke: @var-cr
+  }
+}
+
+.un-forget-app-task-motion-div {
+  overflow: hidden;
+}
