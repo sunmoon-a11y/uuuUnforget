@@ -1,3 +1,7 @@
-# WXT + React
+**google extension plugin**
 
-This template should help get you started developing with React in WXT.
+uuuUnForget to do something
+
+It's just a case
+
+Don't put off till tomorrow what should be done today!!!
