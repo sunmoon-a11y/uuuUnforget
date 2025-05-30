@@ -26,6 +26,9 @@ dependencies:
   use-immer:
     specifier: ^0.11.0
     version: 0.11.0(immer@10.1.1)(react@19.1.0)
+  webextension-polyfill:
+    specifier: ^0.12.0
+    version: 0.12.0
   zustand:
     specifier: ^5.0.5
     version: 5.0.5(@types/react@19.1.5)(immer@10.1.1)(react@19.1.0)
@@ -3685,6 +3688,10 @@ packages:
       - supports-color
       - utf-8-validate
     dev: true
+
+  /webextension-polyfill@0.12.0:
+    resolution: {integrity: sha512-97TBmpoWJEE+3nFBQ4VocyCdLKfw54rFaJ6EVQYLBCXqCIpLSZkwGgASpv4oPt9gdKCJ80RJlcmNzNn008Ag6Q==}
+    dev: false
 
   /webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}

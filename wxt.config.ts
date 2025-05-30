@@ -5,7 +5,8 @@ import path from "path";
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   manifest: {
-    name:'uuuUnForget',
-    permissions: ['tabs', 'activeTab'],
-  }
+    name: 'uuuUnForget',
+    permissions: ['activeTab', 'notifications', 'scripting'],
+  },
+  // outDir: '.'
 });

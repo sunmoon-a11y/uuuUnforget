@@ -4,4 +4,5 @@
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx"
   },
+//  "exclude": ["node_modules"]
 }

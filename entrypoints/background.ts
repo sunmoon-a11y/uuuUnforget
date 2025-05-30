@@ -1,19 +1,18 @@
 export default defineBackground(() => {
-  browser.browserAction.setBadgeText({text: 'new'});
-  browser.browserAction.setBadgeBackgroundColor({color: [255, 0, 0, 255]});
-
-  browser.runtime.onInstalled.addListener(function () {
-    browser.declarativeContent.onPageChanged.removeRules(undefined, function () {
-      browser.declarativeContent.onPageChanged.addRules([
-        {
-          conditions: [
-            // 只有打开百度才显示pageAction
-            new browser.declarativeContent.PageStateMatcher({ pageUrl: { urlContains: 'baidu.com' } })
-          ],
-          actions: [new browser.declarativeContent.ShowPageAction()]
-        }
-      ]);
+  const notifications = async (title: string, message: string) => {
+    await browser.notifications.create('uuuUnForget', {
+      type: 'basic',
+      title,
+      iconUrl: 'icon/128.png',
+      message,
     });
-  });
+  }
 
+  browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+    if (request.type === 'add_new_task') {
+      const { value } = request
+
+      void notifications('Good', value)
+    }
+  })
 });

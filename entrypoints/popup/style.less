@@ -1,9 +1,11 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 @var-size: 16px;
 @var-btn-bg: #669bf6;
+@var-cr: #000;
+@var-item-bg: #f2f3f4;
 
 * {
   margin: 0;
@@ -20,6 +22,7 @@ h1 {
 body {
   min-width: 480px;
   font-size: 14px;
+  color: @var-cr
 }
 
 button {
@@ -33,6 +36,7 @@ button {
   text-transform: uppercase;
   transition: all 0.25s;
   font-weight: bold;
+  color: #fff;
 
   &:hover {
     background: lighten(@var-btn-bg, 5%);
@@ -149,44 +153,14 @@ textarea {
   }
 }
 
-@media (prefers-color-scheme: light) {
-  @var-cr: #000;
-  @var-item-bg: #f2f3f4;
-
-  body {
-    color: @var-cr
-  }
-
-  button {
-    color: #fff;
-  }
-
-  .un-forget-app-task-item, textarea {
-    background: @var-item-bg
-  }
-
-  svg:not(.feather-check) {
-    stroke: @var-cr
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  @var-cr: #fff;
-  @var-item-bg: #444;
-
-  body {
-    color: @var-cr
-  }
-
-  .un-forget-app-task-item, textarea {
-    background: @var-item-bg
-  }
-
-  svg:not(.feather-check) {
-    stroke: @var-cr
-  }
+.un-forget-app-task-item, textarea {
+  background: @var-item-bg
 }
 
 .un-forget-app-task-motion-div {
   overflow: hidden;
+}
+
+svg:not(.feather-check) {
+  stroke: @var-cr
 }

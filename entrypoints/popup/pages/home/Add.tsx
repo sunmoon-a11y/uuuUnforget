@@ -5,10 +5,30 @@ import { useImmerReducer } from "use-immer";
 import { useTodosStore } from "@/support/store/useTodos.ts";
 
 function Add({ onShowBox }: { onShowBox: (v: boolean) => void }) {
+  const { updateListItem } = useTodosStore((state) => state)
 
   const [state, dispatch] = useImmerReducer(reducer, stateInit, init)
 
-  const { getTodoList } = useTodosStore((state) => state)
+  const onAdd = async () => {
+    dispatch({ type: 'loading', value: true })
+
+    const instance = IndexDB.getInstance('works')
+    const uuid = mockGenerateUUID()
+
+    const isReady: any = await instance.add(uuid, state.textarea)
+
+    if (isReady?.type === 'success') {
+      updateListItem(uuid, 'add', {
+        key: uuid, value: state.textarea, status: '0'
+      })
+
+      dispatch({ type: 'textarea', value: '' })
+
+      browser.runtime.sendMessage({ value: state.textarea, uuid, status: 'ok', type: 'add_new_task' })
+    }
+
+    dispatch({ type: 'loading', value: false })
+  }
 
   return (
     <section className='un-forget-app-task add'>
@@ -16,21 +36,7 @@ function Add({ onShowBox }: { onShowBox: (v: boolean) => void }) {
         dispatch({ type: 'textarea', value: e.target.value })
       }}/>
       <div className='un-forget-app-task-add-btn'>
-        <button disabled={!state.textarea || state.loading} onClick={() => {
-          dispatch({ type: 'loading', value: true })
-
-          const instance = IndexDB.getInstance('works')
-          const uuid = mockGenerateUUID()
-
-          instance.add(uuid, state.textarea).then((r: any) => {
-            if (r?.type === 'success') {
-              dispatch({ type: 'textarea', value: '' })
-              void getTodoList()
-            }
-          })
-
-          dispatch({ type: 'loading', value: false })
-        }}>OK
+        <button disabled={!state.textarea || state.loading} onClick={onAdd}>OK
         </button>
         <button onClick={() => {
           onShowBox(false)

@@ -82,7 +82,7 @@ export default class IndexDB {
 
   async update(key: IDBValidKey, val: any) {
     const { promise, resolve, reject } = Promise.withResolvers()
-    const [, transaction] = await this.transaction('readonly')
+    const [, transaction] = await this.transaction('readwrite')
     const request = transaction.put(val, key)
     request.onerror = function (_e) {
       reject(_e)
